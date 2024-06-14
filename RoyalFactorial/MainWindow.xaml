@@ -1,0 +1,65 @@
+﻿<Window x:Class="RoyalFactorial.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoyalFactorial" xmlns:viewmodel="clr-namespace:RoyalFactorial.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="650" Width="1200"
+        Background="{StaticResource BackgroundColor}"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        >
+    <Window.DataContext>
+        <viewmodel:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border MouseDown="MainWindow_MouseDown"
+                Grid.ColumnSpan="2"
+                Background="{StaticResource BorderColor}" >
+            <Grid HorizontalAlignment="Stretch">
+                <Label Content="RoyalFactorial"
+                       Foreground="{StaticResource WhiteColor}"
+                       FontWeight="SemiBold"/>
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Click="Minimize_Click"
+                            Width="20"
+                            Height="20" 
+                            Content="&#128469;"
+                            BorderThickness="0"
+                            Foreground="{StaticResource ForegroundColor}"
+                            Background="Transparent"/>
+                    <Button Click="Maximize_Click"
+                            Width="20"
+                            Height="20" 
+                            Content="&#128470;"
+                            BorderThickness="0"
+                            Foreground="{StaticResource ForegroundColor}"
+                            Background="Transparent"/>
+                    <Button Click="CloseWindow_Click"
+                            Width="20"
+                            Height="20" 
+                            Content="&#10060;"
+                            BorderThickness="0"
+                            Foreground="{StaticResource ForegroundColor}"
+                            Background="Transparent"/>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        
+    </Grid>
+
+</Window>
