@@ -16,7 +16,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="40"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -30,26 +30,26 @@
             <Grid HorizontalAlignment="Stretch">
                 <Label Content="RoyalFactorial"
                        Foreground="{StaticResource WhiteColor}"
-                       FontWeight="SemiBold"/>
+                       FontWeight="SemiBold"
+                       Height="40"
+                       Margin="8,0,0,0"
+                       VerticalContentAlignment="Center"/>
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Horizontal">
                     <Button Click="Minimize_Click"
-                            Width="20"
-                            Height="20" 
+                            Width="40"
                             Content="&#128469;"
                             BorderThickness="0"
                             Foreground="{StaticResource ForegroundColor}"
                             Background="Transparent"/>
                     <Button Click="Maximize_Click"
-                            Width="20"
-                            Height="20" 
+                            Width="40"
                             Content="&#128470;"
                             BorderThickness="0"
                             Foreground="{StaticResource ForegroundColor}"
                             Background="Transparent"/>
                     <Button Click="CloseWindow_Click"
-                            Width="20"
-                            Height="20" 
+                            Width="40"
                             Content="&#10060;"
                             BorderThickness="0"
                             Foreground="{StaticResource ForegroundColor}"
@@ -59,7 +59,21 @@
             </Grid>
         </Border>
 
-        
+        <Grid Grid.Row="1"
+              Background="{StaticResource SecondaryBackgroundColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition />
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Leaderboard"
+                   VerticalAlignment="Center"
+                   FontWeight="Medium"
+                   Foreground="{StaticResource WhiteColor}"
+                   Margin="8,0,0,0"/>
+
+        </Grid>
     </Grid>
 
 </Window>
