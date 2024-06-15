@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace RoyalFactorial
@@ -20,10 +19,8 @@ namespace RoyalFactorial
                 DragMove();
         }
 
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
+        private void Minimize_Click(object sender, RoutedEventArgs e) =>
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        }
 
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
@@ -33,9 +30,7 @@ namespace RoyalFactorial
                 Application.Current.MainWindow.WindowState = WindowState.Maximized;
         }
 
-        private void CloseWindow_Click(object sender, RoutedEventArgs e)
-        {
+        private void CloseWindow_Click(object sender, RoutedEventArgs e) =>
             Application.Current.Shutdown();
-        }
     }
 }
