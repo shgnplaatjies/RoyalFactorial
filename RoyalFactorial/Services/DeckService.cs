@@ -11,43 +11,43 @@ namespace RoyalFactorial.Services
     public class DeckService : IDeckService
     {
         private List<Card> _deck;
-        public int NumDecks { get; }
+        public int NumberOfDecks { get; }
 
-        public DeckService(int numDecks)
+        public DeckService(int numberOfDecks = 1)
         {
             List<Rank> availableRanks = Card.GetRanks();
             List<Suit> availableSuits = Card.GetSuits();
-            this.NumDecks = numDecks;
+            this.NumberOfDecks = numberOfDecks;
 
             _deck = (from rank in availableRanks
                      from suit in availableSuits
-                     from deck in Enumerable.Range(0, numDecks)
+                     from deck in Enumerable.Range(0, numberOfDecks)
                      select new Card(suit, rank)).ToList();
         }
 
         public void ShuffleDeck() =>
             _deck = new List<Card>(_deck.OrderBy(_ => Guid.NewGuid()));
 
-        public List<List<Card>> DealCards(int numPlayers, int numCardsPerPlayer)
+        public List<List<Card>> DealCards(int numberOfPlayers, int numberOfCardsPerPlayer)
         {
-            var numCardsRequired = numPlayers * numCardsPerPlayer;
+            var numberOfCardsRequired = numberOfPlayers * numberOfCardsPerPlayer;
 
-            if (numCardsRequired > _deck.Count)
+            if (numberOfCardsRequired > _deck.Count)
                 throw new InvalidOperationException(
                     $"Not enough cards available for all players." +
-                    $"Required: {numCardsRequired}," +
+                    $"Required: {numberOfCardsRequired}," +
                     $"Available: {_deck.Count}");
 
-            var undealtCards = _deck.Skip(numCardsRequired).ToList();
+            var undealtCards = _deck.Skip(numberOfCardsRequired).ToList();
 
             _deck = undealtCards;
 
-            var players = Enumerable.Range(0, numPlayers);
+            var players = Enumerable.Range(0, numberOfPlayers);
 
             return players
                 .Select(
-                    i => _deck.Skip(i * numCardsPerPlayer)
-                        .Take(numCardsPerPlayer)
+                    i => _deck.Skip(i * numberOfCardsPerPlayer)
+                        .Take(numberOfCardsPerPlayer)
                         .ToList()
                 ).ToList();
         }

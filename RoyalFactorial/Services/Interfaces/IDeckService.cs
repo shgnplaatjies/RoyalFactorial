@@ -10,6 +10,6 @@ namespace RoyalFactorial.Services.Interfaces
     public interface IDeckService
     {
         void ShuffleDeck();
-        List<List<Card>> DealCards(int numberOfPlayers, int cardsPerPlayer);
+        List<List<Card>> DealCards(int numberOfPlayers, int numberOfCardsPerPlayer);
     }
 }
