@@ -73,7 +73,68 @@
                    Foreground="{StaticResource WhiteColor}"
                    Margin="8,0,0,0"/>
 
+
+            <ListBox ItemsSource="{Binding Leaderboard.Players}"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Top"
+                 Width="200"
+                 Grid.Row="1"
+                 Margin="8,0,8,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="#{0}">
+                                        <Binding Path="Position" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Margin="5,0,0,0">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Player: {0}">
+                                        <Binding Path="Name" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Margin="5,0,0,0">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="+{0}">
+                                        <Binding Path="RankScore" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Margin="5,0,0,0">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="*{0}">
+                                        <Binding Path="SuitScore" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Content="Shuffle And Deal" 
+                Command="{Binding ShuffleAndDealCommand}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="2"
+                Margin="0,0,0,20" />
         </Grid>
+
+        <Grid Grid.Row="1"
+            Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+        </Grid>
+
     </Grid>
 
 </Window>
