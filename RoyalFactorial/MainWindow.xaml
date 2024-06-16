@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RoyalFactorial"
         xmlns:viewmodel="clr-namespace:RoyalFactorial.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="650" Width="1200"
+        Height="600" Width="600"
         Background="{StaticResource BackgroundColor}"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -15,15 +15,6 @@
     <Window.DataContext>
         <viewmodel:MainViewModel />
     </Window.DataContext>
-
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Themes/Colors.xaml"/>
-                <ResourceDictionary Source="Themes/DataTemplates.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -88,7 +79,7 @@
             <Label Content="Leaderboard"
                    VerticalAlignment="Center"
                    FontWeight="Medium"
-                   Foreground="{StaticResource WhiteColor}"
+                   Foreground="{StaticResource TextAccentColor}"
                    Margin="8,0,0,0"/>
 
 
