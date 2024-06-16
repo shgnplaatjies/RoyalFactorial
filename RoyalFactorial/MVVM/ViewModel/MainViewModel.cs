@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace RoyalFactorial.MVVM.ViewModel
 {
-    public class MainViewModel(ICardGame cardGame) : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         private static readonly int CARDS_PER_PLAYER = 5;
         private static readonly int NUMBER_OF_DECKS = 2;
@@ -26,16 +26,17 @@ namespace RoyalFactorial.MVVM.ViewModel
                 "Luis",
                 "Johnny",
             ]);
+        private readonly ICardGame _cardGame;
 
         public MainViewModel() : this(new CardGame()) { }
+        public MainViewModel(ICardGame cardGame)
+        {
+            _cardGame = cardGame;
+            _shuffleAndDealCommand = new DelegateCommand(ShuffleAndDeal);
+        }
 
-        private readonly ICardGame _cardGame = cardGame;
         public ObservableCollection<Player> Players { get; private set; } = [];
         public Leaderboard Leaderboard { get; private set; } = new([]);
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string propertyName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private void ShuffleAndDeal()
         {
@@ -48,8 +49,12 @@ namespace RoyalFactorial.MVVM.ViewModel
             OnPropertyChanged(nameof(Leaderboard));
         }
 
-        private DelegateCommand _shuffleAndDealCommand = null!;
-        public ICommand ShuffleAndDealCommand =>
-            _shuffleAndDealCommand ??= new(() => ShuffleAndDeal());
+        private readonly DelegateCommand _shuffleAndDealCommand;
+
+        public ICommand ShuffleAndDealCommand => _shuffleAndDealCommand;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new(propertyName));
     }
 }
