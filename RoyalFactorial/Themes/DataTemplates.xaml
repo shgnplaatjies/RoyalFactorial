@@ -6,8 +6,7 @@
                   DataType="{x:Type local:Player}">
         <Grid Background="Transparent"
               HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              Margin="0">
+              VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition />
@@ -17,25 +16,26 @@
             <TextBlock HorizontalAlignment="Left"
                        FontWeight="Bold"
                        Foreground="{StaticResource TextColor}"
-                       Padding="5">
+                       Padding="3">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="#{0}">
                         <Binding Path="Position" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
             <TextBlock Grid.Column="1"
                        HorizontalAlignment="Left"
                        Text="{Binding Name}"
                        Foreground="{StaticResource TextColor}"
-                       Padding="5">
+                       Padding="3">
             </TextBlock>
 
             <TextBlock Grid.Column="2"
                        HorizontalAlignment="Right"
                        TextAlignment="Right"
                        Foreground="{StaticResource TextAccentColor}"
-                       Padding="5">
+                       Padding="3">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="+{0}">
                         <Binding Path="RankScore" />
