@@ -82,8 +82,35 @@
                    Foreground="{StaticResource TextAccentColor}"
                    Margin="8,0,0,0"/>
 
+            <StackPanel Margin="4,0,4,0"
+                        Grid.Row="1"
+                        Background="Transparent">
+                <Grid Margin="4,0,4,0"
+                      Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <ListBox ItemTemplate="{StaticResource LeaderboardEntryTemplate}"
+                    <TextBlock Text="Place"
+                               FontWeight="Bold"
+                               Padding="5"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Player"
+                               Grid.Column="1"
+                               FontWeight="Bold"
+                               Padding="5"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Points"
+                               Grid.Column="2"
+                               FontWeight="Bold"
+                               Padding="5"
+                               TextAlignment="Right"
+                               Foreground="{StaticResource TextColor}" />
+                </Grid>
+
+                <ListBox ItemTemplate="{StaticResource LeaderboardEntryTemplate}"
                      ItemsSource="{Binding Leaderboard.Players}"     
                      HorizontalAlignment="Stretch"
                      HorizontalContentAlignment="Stretch"
@@ -91,7 +118,8 @@
                      VerticalAlignment="Top"
                      BorderThickness="0"
                      Background="Transparent">
-            </ListBox>
+                </ListBox>
+            </StackPanel>
 
             <Button Content="Shuffle And Deal" 
                     Command="{Binding ShuffleAndDealCommand}"
