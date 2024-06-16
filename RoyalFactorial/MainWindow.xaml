@@ -161,10 +161,11 @@
                             <Setter Property="MaxWidth" Value="700"/>
                         </Style>
                     </ItemsControl.ItemContainerStyle>
+
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
 
     </Grid>
-
+    
 </Window>
