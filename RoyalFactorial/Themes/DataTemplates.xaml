@@ -13,6 +13,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
+            <!-- Position -->
             <TextBlock HorizontalAlignment="Left"
                        FontWeight="Bold"
                        Foreground="{StaticResource TextColor}"
@@ -24,6 +25,7 @@
                 </TextBlock.Text>
             </TextBlock>
 
+            <!-- Name -->
             <TextBlock Grid.Column="1"
                        HorizontalAlignment="Left"
                        Text="{Binding Name}"
@@ -31,17 +33,35 @@
                        Padding="3">
             </TextBlock>
 
+            <!-- Rank Score -->
             <TextBlock Grid.Column="2"
                        HorizontalAlignment="Right"
                        TextAlignment="Right"
                        Foreground="{StaticResource TextAccentColor}"
-                       Padding="3">
+                       Padding="3"
+                       Style="{StaticResource HiddenIfTiedFirst}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="+{0}">
                         <Binding Path="RankScore" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
+            <!-- Suite Score -->
+            <TextBlock Grid.Column="2"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"
+                       Foreground="{StaticResource TextAccentColor}"
+                       Padding="3"
+                       Style="{StaticResource VisibleIfTiedFirst}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="x{0}">
+                        <Binding Path="SuitScore" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+
         </Grid>
     </DataTemplate>
 
@@ -126,8 +146,8 @@
                                                        Margin="0,0,8,0"
                                                        Padding="2"
                                                        Foreground="{StaticResource PrimaryColor}"/>
-                                        </StackPanel
-                                    >
+                                        </StackPanel>
+
                                         <TextBlock Foreground="{StaticResource TextColor}"
                                                    HorizontalAlignment="Stretch"
                                                    Padding="2"
@@ -162,15 +182,36 @@
                             Grid.Column="1"
                             Margin="8,0,8,0">
                     <TextBlock Text="Rank Score:"
-                            Margin="0, 0, 0, 5"
-                            TextWrapping="Wrap"
-                            FontWeight="DemiBold"
-                            Foreground="{StaticResource TextColor}"/>
+                               Margin="0, 0, 0, 5"
+                               TextWrapping="Wrap"
+                               FontWeight="DemiBold"
+                               Foreground="{StaticResource TextColor}"/>
+
                     <TextBlock Text="{Binding RankScore}"
-                            Foreground="{StaticResource TextColor}"
-                            FontSize="14"
-                            Padding="0,0,5,5"
-                            FontWeight="DemiBold"/>
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="14"
+                               Padding="0,0,5,5"
+                               FontWeight="DemiBold"/>
+
+                    <TextBlock Text="Suit Factor:"
+                               TextWrapping="Wrap" 
+                               Margin="0, 0, 0, 5"
+                               FontWeight="DemiBold"
+                               Foreground="{StaticResource PrimaryColor}"/>
+
+                    <TextBlock Text="{Binding SuitScore}"
+                               Foreground="{StaticResource PrimaryColor}"
+                               FontSize="14"
+                               Padding="0,0,5,5"
+                               FontWeight="DemiBold"
+                               Style="{StaticResource VisibleIfTiedFirst}"/>
+
+                    <TextBlock Text="??"
+                               Foreground="{StaticResource PrimaryColor}"
+                               FontSize="14"
+                               Padding="0,0,5,0"
+                               FontWeight="DemiBold"
+                               Style="{StaticResource HiddenIfTiedFirst}"/>
                 </StackPanel>
             </Grid>
         </Border>
