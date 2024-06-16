@@ -84,11 +84,13 @@
 
 
             <ListBox ItemTemplate="{StaticResource LeaderboardEntryTemplate}"
-                ItemsSource="{Binding Leaderboard.Players}"     
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                Grid.Row="1"
-                Margin="8,0,8,0">
+                     ItemsSource="{Binding Leaderboard.Players}"     
+                     HorizontalAlignment="Stretch"
+                     HorizontalContentAlignment="Stretch"
+                     Grid.Row="1"
+                     VerticalAlignment="Top"
+                     BorderThickness="0"
+                     Background="Transparent">
             </ListBox>
 
             <Button Content="Shuffle And Deal" 

@@ -4,37 +4,40 @@
     >
     <DataTemplate x:Key="LeaderboardEntryTemplate"
                   DataType="{x:Type local:Player}">
-        <Grid HorizontalAlignment="Stretch"
-              Width="150"
-              Margin="8,4,8,4">
+        <Grid Background="Transparent"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Margin="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
                 <ColumnDefinition />
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock
-                HorizontalAlignment="Left"
-                FontWeight="Bold" 
-                Margin="0, 0, 8, 0">
+            <TextBlock HorizontalAlignment="Left"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource TextColor}"
+                       Padding="5">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="#{0} |">
+                    <MultiBinding StringFormat="#{0}">
                         <Binding Path="Position" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
-            <TextBlock
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                Text="{Binding Name}"
-                Margin="0, 0, 8, 0">
+            <TextBlock Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       Text="{Binding Name}"
+                       Foreground="{StaticResource TextColor}"
+                       Padding="5">
             </TextBlock>
-            <TextBlock
-                Grid.Column="2"
-                HorizontalAlignment="Right"
-                TextAlignment="Right">
+
+            <TextBlock Grid.Column="2"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"
+                       Foreground="{StaticResource TextAccentColor}"
+                       Padding="5">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="Points: {0}">
+                    <MultiBinding StringFormat="+{0}">
                         <Binding Path="RankScore" />
                     </MultiBinding>
                 </TextBlock.Text>
