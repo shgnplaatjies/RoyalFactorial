@@ -13,6 +13,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
+            <!-- Position -->
             <TextBlock HorizontalAlignment="Left"
                        FontWeight="Bold"
                        Foreground="{StaticResource TextColor}"
@@ -24,6 +25,7 @@
                 </TextBlock.Text>
             </TextBlock>
 
+            <!-- Name -->
             <TextBlock Grid.Column="1"
                        HorizontalAlignment="Left"
                        Text="{Binding Name}"
@@ -31,19 +33,187 @@
                        Padding="3">
             </TextBlock>
 
+            <!-- Rank Score -->
             <TextBlock Grid.Column="2"
                        HorizontalAlignment="Right"
                        TextAlignment="Right"
                        Foreground="{StaticResource TextAccentColor}"
-                       Padding="3">
+                       Padding="3"
+                       Style="{StaticResource HiddenIfTiedFirst}">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="+{0}">
                         <Binding Path="RankScore" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
+            <!-- Suite Score -->
+            <TextBlock Grid.Column="2"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"
+                       Foreground="{StaticResource TextAccentColor}"
+                       Padding="3"
+                       Style="{StaticResource VisibleIfTiedFirst}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="x{0}">
+                        <Binding Path="SuitScore" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="PlayerCardTemplate"
+                  DataType="{x:Type local:Player}">
+        <Border Margin="10"
+                BorderBrush="{StaticResource BorderGrayColor}"
+                BorderThickness="1"
+                Background="{StaticResource InteractiveBackgroundColor}"
+                CornerRadius="5"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
+                <!-- PlayerCard Header -->
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Text="{Binding Name}"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource ForegroundColor}"
+                           Margin="10"/>
+
+                <!-- Player Position -->
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           VerticalAlignment="Center"
+                           TextAlignment="Right"
+                           Foreground="{StaticResource PrimaryColor}"
+                           FontSize="18"
+                           FontWeight="DemiBold"
+                           Margin="10">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="#{0}">
+                            <Binding Path="Position" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <!-- Player Hand Section -->
+                <ScrollViewer Grid.Row="1"
+                              Grid.Column="0"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalAlignment="Center"
+                              Margin="10"
+                              Background="{StaticResource InteractiveGrayBackgroundColor}"
+                              BorderBrush="{StaticResource BorderGrayColor}"
+                              BorderThickness="1">
+                    <ItemsControl ItemsSource="{Binding Hand}">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" ItemWidth="50" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1"
+                                        BorderBrush="{StaticResource BorderColor}"
+                                        Background="{StaticResource ForegroundColor}">
+                                    <StackPanel Margin="5"
+                                                Background="{StaticResource WhiteColor}">
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding Rank.Symbol}"
+                                                       Margin="0,0,8,0"
+                                                       Padding="2"
+                                                       Foreground="{StaticResource TextColor}"/>
+                                            <TextBlock Text="{Binding Suit.Symbol}"
+                                                       Margin="0,0,8,0"
+                                                       Padding="2"
+                                                       Foreground="{StaticResource PrimaryColor}"/>
+                                        </StackPanel>
+
+                                        <TextBlock Foreground="{StaticResource TextColor}"
+                                                   HorizontalAlignment="Stretch"
+                                                   Padding="2"
+                                                   TextAlignment="Right">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="+{0}">
+                                                    <Binding Path="Rank.Score" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="{StaticResource PrimaryColor}"
+                                                   Padding="2"
+                                                   HorizontalAlignment="Stretch"
+                                                   TextAlignment="Right">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="x{0}">
+                                                    <Binding Path="Suit.Score" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <!-- Player Stats Panel -->
+                <StackPanel Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="8,0,8,0">
+                    <TextBlock Text="Rank Score:"
+                               Margin="0, 0, 0, 5"
+                               TextWrapping="Wrap"
+                               FontWeight="DemiBold"
+                               Foreground="{StaticResource TextColor}"/>
+
+                    <TextBlock Text="{Binding RankScore}"
+                               Foreground="{StaticResource TextColor}"
+                               FontSize="14"
+                               Padding="0,0,5,5"
+                               FontWeight="DemiBold"/>
+
+                    <TextBlock Text="Suit Factor:"
+                               TextWrapping="Wrap" 
+                               Margin="0, 0, 0, 5"
+                               FontWeight="DemiBold"
+                               Foreground="{StaticResource PrimaryColor}"/>
+
+                    <TextBlock Text="{Binding SuitScore}"
+                               Foreground="{StaticResource PrimaryColor}"
+                               FontSize="14"
+                               Padding="0,0,5,5"
+                               FontWeight="DemiBold"
+                               Style="{StaticResource VisibleIfTiedFirst}"/>
+
+                    <TextBlock Text="??"
+                               Foreground="{StaticResource PrimaryColor}"
+                               FontSize="14"
+                               Padding="0,0,5,0"
+                               FontWeight="DemiBold"
+                               Style="{StaticResource HiddenIfTiedFirst}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
 </ResourceDictionary>
