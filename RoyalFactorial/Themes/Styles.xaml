@@ -1,11 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="CustomButtonStyle" TargetType="Button">
+    <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="Margin" Value="0,0,0,15"/>
-        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="{StaticResource WhiteColor}"/>
+        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
         <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
         <Setter Property="Template">
             <Setter.Value>

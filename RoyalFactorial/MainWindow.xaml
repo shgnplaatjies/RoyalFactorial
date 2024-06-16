@@ -93,11 +93,9 @@
 
             <Button Content="Shuffle And Deal" 
                     Command="{Binding ShuffleAndDealCommand}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
                     Grid.Row="2"
                     Margin="0,0,0,15"
-                    Style="{StaticResource CustomButtonStyle}"/>
+                    Style="{StaticResource ButtonStyle}"/>
         </Grid>
 
         <Grid Grid.Row="1"
