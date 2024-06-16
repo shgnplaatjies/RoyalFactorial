@@ -91,12 +91,71 @@
                 </TextBlock>
 
                 <!-- Player Hand Section -->
-                <StackPanel Grid.Row="1"
-                            Grid.Column="0"
-                            VerticalAlignment="Stretch"
-                            HorizontalAlignment="Stretch"
-                            Background="{StaticResource InteractiveGrayBackgroundColor}">
-                </StackPanel>
+                <ScrollViewer Grid.Row="1"
+                              Grid.Column="0"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalAlignment="Center"
+                              Margin="10"
+                              Background="{StaticResource InteractiveGrayBackgroundColor}"
+                              BorderBrush="{StaticResource BorderGrayColor}"
+                              BorderThickness="1">
+                    <ItemsControl ItemsSource="{Binding Hand}">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" ItemWidth="50" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1"
+                                        BorderBrush="{StaticResource BorderColor}"
+                                        Background="{StaticResource ForegroundColor}">
+                                    <StackPanel Margin="5"
+                                                Background="{StaticResource WhiteColor}">
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding Rank.Symbol}"
+                                                       Margin="0,0,8,0"
+                                                       Padding="2"
+                                                       Foreground="{StaticResource TextColor}"/>
+                                            <TextBlock Text="{Binding Suit.Symbol}"
+                                                       Margin="0,0,8,0"
+                                                       Padding="2"
+                                                       Foreground="{StaticResource PrimaryColor}"/>
+                                        </StackPanel
+                                    >
+                                        <TextBlock Foreground="{StaticResource TextColor}"
+                                                   HorizontalAlignment="Stretch"
+                                                   Padding="2"
+                                                   TextAlignment="Right">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="+{0}">
+                                                    <Binding Path="Rank.Score" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <TextBlock Foreground="{StaticResource PrimaryColor}"
+                                                   Padding="2"
+                                                   HorizontalAlignment="Stretch"
+                                                   TextAlignment="Right">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="x{0}">
+                                                    <Binding Path="Suit.Score" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
 
                 <!-- Player Stats Panel -->
                 <StackPanel Grid.Row="1"

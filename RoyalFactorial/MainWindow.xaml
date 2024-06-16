@@ -153,9 +153,15 @@
                               ItemTemplate="{StaticResource PlayerCardTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" MinWidth="200"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="MaxWidth" Value="700"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
