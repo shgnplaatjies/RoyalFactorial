@@ -14,33 +14,61 @@ using System.Windows.Input;
 
 namespace RoyalFactorial.MVVM.ViewModel
 {
-    public class MainViewModel(ICardGame cardGame) : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
-        private static readonly int CARDS_PER_PLAYER = 5;
-        private static readonly int NUMBER_OF_DECKS = 2;
-        private static readonly List<string> PLAYER_NAMES = new([
-                "Trevor",
-                "Michael",
-                "Franklin",
-                "Niko",
-                "Luis",
-                "Johnny",
-            ]);
+        private readonly ICardGame _cardGame;
+        private int _cardsPerPlayer = 5;
+        private int _numberOfDecks = 2;
+        private string _newPlayerName = string.Empty;
 
         public MainViewModel() : this(new CardGame()) { }
 
-        private readonly ICardGame _cardGame = cardGame;
+        public MainViewModel(ICardGame cardGame)
+        {
+            _cardGame = cardGame;
+            PlayerNames = [];
+            _shuffleAndDealCommand = new DelegateCommand(ShuffleAndDeal);
+            _addPlayerCommand = new DelegateCommand(AddPlayer);
+        }
+
+
+        public int CardsPerPlayer
+        {
+            get => _cardsPerPlayer;
+            set
+            {
+                _cardsPerPlayer = value;
+                OnPropertyChanged(nameof(CardsPerPlayer));
+            }
+        }
+
+        public int NumberOfDecks
+        {
+            get => _numberOfDecks;
+            set
+            {
+                _numberOfDecks = value;
+                OnPropertyChanged(nameof(NumberOfDecks));
+            }
+        }
+
+        public string NewPlayerName
+        {
+            get => _newPlayerName;
+            set
+            {
+                _newPlayerName = value;
+                OnPropertyChanged(nameof(NewPlayerName));
+            }
+        }
+
+        public ObservableCollection<string> PlayerNames { get; }
         public ObservableCollection<Player> Players { get; private set; } = [];
         public Leaderboard Leaderboard { get; private set; } = new([]);
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string propertyName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         private void ShuffleAndDeal()
         {
-            _cardGame.InitGame(PLAYER_NAMES, CARDS_PER_PLAYER, NUMBER_OF_DECKS);
-
+            _cardGame.InitGame(new (PlayerNames), CardsPerPlayer, NumberOfDecks);
             Players = new ObservableCollection<Player>(_cardGame.Players);
             Leaderboard = _cardGame.Leaderboard;
 
@@ -48,8 +76,26 @@ namespace RoyalFactorial.MVVM.ViewModel
             OnPropertyChanged(nameof(Leaderboard));
         }
 
-        private DelegateCommand _shuffleAndDealCommand = null!;
-        public ICommand ShuffleAndDealCommand =>
-            _shuffleAndDealCommand ??= new(() => ShuffleAndDeal());
+        private void AddPlayer()
+        {
+            bool isValidName = !string.IsNullOrWhiteSpace(NewPlayerName) && !PlayerNames.Contains(NewPlayerName);
+
+            if (isValidName)
+            {
+                PlayerNames.Add(NewPlayerName);
+                NewPlayerName = string.Empty;
+                OnPropertyChanged(nameof(PlayerNames));
+            }
+        }
+
+        private readonly DelegateCommand _shuffleAndDealCommand;
+        private readonly DelegateCommand _addPlayerCommand;
+
+        public ICommand ShuffleAndDealCommand => _shuffleAndDealCommand;
+        public ICommand AddPlayerCommand => _addPlayerCommand;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new(propertyName));
     }
 }
