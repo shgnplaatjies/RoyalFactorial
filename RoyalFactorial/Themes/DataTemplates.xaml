@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RoyalFactorial.MVVM.Model"
+    >
+    <DataTemplate x:Key="LeaderboardEntryTemplate"
+                  DataType="{x:Type local:Player}">
+        <Grid Background="Transparent"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Left"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource TextColor}"
+                       Padding="3">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="#{0}">
+                        <Binding Path="Position" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBlock Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       Text="{Binding Name}"
+                       Foreground="{StaticResource TextColor}"
+                       Padding="3">
+            </TextBlock>
+
+            <TextBlock Grid.Column="2"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"
+                       Foreground="{StaticResource TextAccentColor}"
+                       Padding="3">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="+{0}">
+                        <Binding Path="RankScore" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
+
+
+</ResourceDictionary>

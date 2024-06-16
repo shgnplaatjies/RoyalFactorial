@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RoyalFactorial" xmlns:viewmodel="clr-namespace:RoyalFactorial.MVVM.ViewModel"
+        xmlns:local="clr-namespace:RoyalFactorial"
+        xmlns:viewmodel="clr-namespace:RoyalFactorial.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="650" Width="1200"
+        Height="600" Width="600"
         Background="{StaticResource BackgroundColor}"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -14,14 +15,19 @@
     <Window.DataContext>
         <viewmodel:MainViewModel />
     </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
+            <!-- Control Bar -->
             <RowDefinition Height="40"/>
-            <RowDefinition />
+            <!-- Application Content -->
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <!-- Leaderboard Panel -->
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition />
+            <!-- Main Content -->
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Border MouseDown="MainWindow_MouseDown"
@@ -62,18 +68,81 @@
         <Grid Grid.Row="1"
               Background="{StaticResource SecondaryBackgroundColor}">
             <Grid.RowDefinitions>
+                <!-- Leaderboard Title -->
                 <RowDefinition Height="40"/>
+                <!-- Leaderboard -->
                 <RowDefinition />
+                <!-- Control Button Section -->
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
             <Label Content="Leaderboard"
                    VerticalAlignment="Center"
                    FontWeight="Medium"
-                   Foreground="{StaticResource WhiteColor}"
+                   Foreground="{StaticResource TextAccentColor}"
                    Margin="8,0,0,0"/>
 
+            <StackPanel Margin="4,0,4,0"
+                        Grid.Row="1"
+                        Background="Transparent">
+                <Grid Margin="4,0,4,0"
+                      Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Place"
+                               FontWeight="Bold"
+                               Padding="5"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Player"
+                               Grid.Column="1"
+                               FontWeight="Bold"
+                               Padding="5"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Points"
+                               Grid.Column="2"
+                               FontWeight="Bold"
+                               Padding="5"
+                               TextAlignment="Right"
+                               Foreground="{StaticResource TextColor}" />
+                </Grid>
+
+                <ListBox ItemTemplate="{StaticResource LeaderboardEntryTemplate}"
+                     ItemsSource="{Binding Leaderboard.Players}"     
+                     HorizontalAlignment="Stretch"
+                     HorizontalContentAlignment="Stretch"
+                     Grid.Row="1"
+                     VerticalAlignment="Top"
+                     BorderThickness="0"
+                     Background="Transparent">
+                </ListBox>
+            </StackPanel>
+
+            <Button Content="Shuffle And Deal" 
+                    Command="{Binding ShuffleAndDealCommand}"
+                    Grid.Row="2"
+                    Margin="0,0,0,15"
+                    Style="{StaticResource ButtonStyle}"/>
         </Grid>
+
+        <Grid Grid.Row="1"
+            Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <!-- Main Content -->
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!-- Card Game Section -->
+                <RowDefinition />
+                <!-- Misc Controls Section -->
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+        </Grid>
+
     </Grid>
 
 </Window>
