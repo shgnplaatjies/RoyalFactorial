@@ -23,4 +23,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="VisibleIfTiedFirst" TargetType="TextBlock">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsTiedFirst}" Value="False">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="HiddenIfTiedFirst" TargetType="TextBlock">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsTiedFirst}"
+                    Value="True">
+                <Setter Property="Visibility"
+                Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
