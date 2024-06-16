@@ -12,6 +12,7 @@ namespace RoyalFactorial.MVVM.Model
         public int SuitScore { get; } = CalculateSuitScore(Hand);
         public string Name { get; } = Name;
         public int? Position { get; set; }
+        public bool? IsTiedFirst { get; set; }
 
         public List<Card> Hand { get; } = new(Hand
             .OrderByDescending(_ => _.GetRankScore()));
