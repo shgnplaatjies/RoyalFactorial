@@ -32,24 +32,17 @@ namespace RoyalFactorial.Services
         {
             var numberOfCardsRequired = numberOfPlayers * numberOfCardsPerPlayer;
 
-            if (numberOfCardsRequired > _deck.Count)
-                throw new InvalidOperationException(
-                    $"Not enough cards available for all players." +
-                    $"Required: {numberOfCardsRequired}," +
-                    $"Available: {_deck.Count}");
-
-            var undealtCards = _deck.Skip(numberOfCardsRequired).ToList();
-
-            _deck = undealtCards;
-
             var players = Enumerable.Range(0, numberOfPlayers);
 
-            return players
+            if (numberOfCardsRequired > _deck.Count)
+                return new(players.Select(_ => new List<Card>()));
+
+            return new(players
                 .Select(
-                    i => _deck.Skip(i * numberOfCardsPerPlayer)
+                    (_, i) => _deck.Skip(i * numberOfCardsPerPlayer)
                         .Take(numberOfCardsPerPlayer)
                         .ToList()
-                ).ToList();
+                ));
         }
     }
 }
