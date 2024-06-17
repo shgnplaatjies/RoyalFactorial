@@ -71,7 +71,9 @@
                 <!-- Leaderboard Title -->
                 <RowDefinition Height="40"/>
                 <!-- Leaderboard -->
-                <RowDefinition />
+                <RowDefinition Height="*" />
+                <!-- Alert Section -->
+                <RowDefinition Height="Auto"/>
                 <!-- Control Button Section -->
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
@@ -82,6 +84,7 @@
                    Foreground="{StaticResource TextAccentColor}"
                    Margin="8,0,0,0"/>
 
+            <!-- Leaderboard -->
             <StackPanel Margin="4,0,4,0"
                         Grid.Row="1"
                         Background="Transparent">
@@ -91,6 +94,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Place"
@@ -106,7 +110,13 @@
                                Grid.Column="2"
                                FontWeight="Bold"
                                Padding="5"
-                               TextAlignment="Right"
+                               TextAlignment="Left"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Del"
+                               Grid.Column="3"
+                               FontWeight="Bold"
+                               Padding="5"
+                               TextAlignment="Left"
                                Foreground="{StaticResource TextColor}" />
                 </Grid>
 
@@ -121,9 +131,19 @@
                 </ListBox>
             </StackPanel>
 
+            <!-- Alert -->
+            <TextBlock Text="{Binding AlertMessage}"
+                       Foreground="{StaticResource TextAccentColor}"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Left"
+                       Margin="10,5"
+                       Grid.Row="2"
+                       TextWrapping="Wrap"/>
+
+            <!-- Shuffle -->
             <Button Content="Shuffle And Deal" 
                     Command="{Binding ShuffleAndDealCommand}"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Margin="0,0,0,15"
                     Style="{StaticResource ButtonStyle}"/>
         </Grid>
