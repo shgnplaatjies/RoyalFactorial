@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <!-- Leaderboard Panel -->
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
             <!-- Main Content -->
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -110,7 +110,7 @@
                                Grid.Column="2"
                                FontWeight="Bold"
                                Padding="5"
-                               TextAlignment="Left"
+                               TextAlignment="Right"
                                Foreground="{StaticResource TextColor}" />
                     <TextBlock Text="Del"
                                Grid.Column="3"
