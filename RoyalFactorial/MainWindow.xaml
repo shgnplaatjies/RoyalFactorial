@@ -71,7 +71,9 @@
                 <!-- Leaderboard Title -->
                 <RowDefinition Height="40"/>
                 <!-- Leaderboard -->
-                <RowDefinition />
+                <RowDefinition Height="*" />
+                <!-- Alert Section -->
+                <RowDefinition Height="Auto"/>
                 <!-- Control Button Section -->
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
@@ -82,6 +84,7 @@
                    Foreground="{StaticResource TextAccentColor}"
                    Margin="8,0,0,0"/>
 
+            <!-- Leaderboard -->
             <StackPanel Margin="4,0,4,0"
                         Grid.Row="1"
                         Background="Transparent">
@@ -91,6 +94,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Place"
@@ -106,7 +110,13 @@
                                Grid.Column="2"
                                FontWeight="Bold"
                                Padding="5"
-                               TextAlignment="Right"
+                               TextAlignment="Left"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Del"
+                               Grid.Column="3"
+                               FontWeight="Bold"
+                               Padding="5"
+                               TextAlignment="Left"
                                Foreground="{StaticResource TextColor}" />
                 </Grid>
 
@@ -121,9 +131,19 @@
                 </ListBox>
             </StackPanel>
 
+            <!-- Alert -->
+            <TextBlock Text="{Binding AlertMessage}"
+                       Foreground="{StaticResource TextAccentColor}"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Left"
+                       Margin="10,5"
+                       Grid.Row="2"
+                       TextWrapping="Wrap"/>
+
+            <!-- Shuffle -->
             <Button Content="Shuffle And Deal" 
                     Command="{Binding ShuffleAndDealCommand}"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Margin="0,0,0,15"
                     Style="{StaticResource ButtonStyle}"/>
         </Grid>
@@ -136,11 +156,10 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <!-- Card Game Section -->
-                <RowDefinition />
+                <RowDefinition Height="*"/>
                 <!-- Misc Controls Section -->
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
 
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalAlignment="Stretch"
@@ -164,8 +183,106 @@
 
                 </ItemsControl>
             </ScrollViewer>
+
+            <Grid Grid.Row="1"
+                  HorizontalAlignment="Stretch"
+                  Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Cards Per Player"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Foreground="{StaticResource TextColor}"
+                           Margin="5,10,0,0"
+                           TextWrapping="Wrap"
+                           TextDecorations="Underline"/>
+
+                <TextBox Text="{Binding CardsPerPlayer, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Background="{StaticResource InteractiveGrayBackgroundColor}"
+                         BorderBrush="{StaticResource BorderGrayColor}"
+                         BorderThickness="1"
+                         Padding="5"
+                         Margin="5"
+                         TextAlignment="Left"
+                         Foreground="{StaticResource TextColor}"
+                         FontSize="14"
+                         FontWeight="Medium"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         VerticalAlignment="Center"/>
+
+                <TextBlock Text="Number Of Decks"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Margin="5,10,0,0"
+                           TextWrapping="Wrap"
+                           TextDecorations="Underline"
+                           Foreground="{StaticResource TextColor}"/>
+
+                <TextBox Text="{Binding NumberOfDecks, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Background="{StaticResource InteractiveGrayBackgroundColor}"
+                         BorderBrush="{StaticResource BorderGrayColor}"
+                         BorderThickness="1"
+                         Padding="5"
+                         Margin="5"
+                         TextAlignment="Left"
+                         Foreground="{StaticResource TextColor}"
+                         FontSize="14"
+                         FontWeight="Medium"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         VerticalAlignment="Center"/>
+
+                <TextBlock Text="New Player Name"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           Foreground="{StaticResource TextColor}"
+                           Margin="5,10,0,0"
+                           TextWrapping="Wrap"
+                           TextDecorations="Underline"/>
+
+
+                <TextBox Text="{Binding NewPlayerName, UpdateSourceTrigger=PropertyChanged}"
+                         Background="{StaticResource InteractiveGrayBackgroundColor}"
+                         BorderBrush="{StaticResource BorderGrayColor}"
+                         BorderThickness="1"
+                         Padding="5"
+                         Margin="5,5,5,5"
+                         TextAlignment="Left"
+                         Foreground="{StaticResource TextColor}"
+                         FontSize="14"
+                         FontWeight="Medium"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         Grid.Row="1"
+                         Grid.Column="2"
+                         VerticalAlignment="Center"/>
+                <Button Content="Add"
+                        Command="{Binding AddPlayerCommand}"
+                        Width="Auto"
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        Margin="5"
+                        Style="{StaticResource ButtonStyle}"/>
+
+            </Grid>
         </Grid>
 
     </Grid>
-    
+
 </Window>

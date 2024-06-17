@@ -11,6 +11,7 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <!-- Position -->
@@ -35,8 +36,8 @@
 
             <!-- Rank Score -->
             <TextBlock Grid.Column="2"
-                       HorizontalAlignment="Right"
-                       TextAlignment="Right"
+                       HorizontalAlignment="Left"
+                       TextAlignment="Left"
                        Foreground="{StaticResource TextAccentColor}"
                        Padding="3"
                        Style="{StaticResource HiddenIfTiedFirst}">
@@ -49,8 +50,8 @@
 
             <!-- Suite Score -->
             <TextBlock Grid.Column="2"
-                       HorizontalAlignment="Right"
-                       TextAlignment="Right"
+                       HorizontalAlignment="Left"
+                       TextAlignment="Left"
                        Foreground="{StaticResource TextAccentColor}"
                        Padding="3"
                        Style="{StaticResource VisibleIfTiedFirst}">
@@ -60,6 +61,21 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
+            <!-- Remove Button -->
+            <Button Content="🗑"
+                    Command="{
+                        Binding DataContext.RemoveLeaderboardPlayerCommand,
+                        RelativeSource={RelativeSource AncestorType=Window}
+                        }"
+                    CommandParameter="{Binding}"
+                    Foreground="White"
+                    Background="{StaticResource SecondaryColor}"
+                    Padding="5"
+                    Margin="5,0,0,0"
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ButtonStyle}"/>
 
 
         </Grid>
@@ -90,6 +106,8 @@
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Text="{Binding Name}"
+                           FontSize="16"
+                           VerticalAlignment="Bottom"
                            FontWeight="Bold"
                            Foreground="{StaticResource ForegroundColor}"
                            Margin="10"/>
