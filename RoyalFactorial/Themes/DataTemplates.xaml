@@ -7,10 +7,10 @@
         <Grid Background="Transparent"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -36,8 +36,8 @@
 
             <!-- Rank Score -->
             <TextBlock Grid.Column="2"
-                       HorizontalAlignment="Left"
-                       TextAlignment="Left"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"
                        Foreground="{StaticResource TextAccentColor}"
                        Padding="3"
                        Style="{StaticResource HiddenIfTiedFirst}">
@@ -50,8 +50,8 @@
 
             <!-- Suite Score -->
             <TextBlock Grid.Column="2"
-                       HorizontalAlignment="Left"
-                       TextAlignment="Left"
+                       HorizontalAlignment="Right"
+                       TextAlignment="Right"
                        Foreground="{StaticResource TextAccentColor}"
                        Padding="3"
                        Style="{StaticResource VisibleIfTiedFirst}">
