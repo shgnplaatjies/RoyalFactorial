@@ -91,8 +91,6 @@ namespace RoyalFactorial.MVVM.ViewModel
         {
             if (PlayerNames.Count < MIN_PLAYERS_PER_GAME)
             { AlertMessage = $"Please add at least {MIN_PLAYERS_PER_GAME} players."; return; }
-            else if (PlayerNames.Count > MAX_PLAYERS_PER_GAME)
-            { AlertMessage = $"Cannot add more than {MAX_PLAYERS_PER_GAME} players."; return; }
 
             _cardGame.InitGame(new(PlayerNames), CardsPerPlayer, NumberOfDecks);
             Players = new ObservableCollection<Player>(_cardGame.Players);
@@ -110,6 +108,8 @@ namespace RoyalFactorial.MVVM.ViewModel
             { AlertMessage = "Player name cannot be empty."; return; }
             else if (PlayerNames.Contains(NewPlayerName))
             { AlertMessage = "Player name already exists."; return; }
+            else if (PlayerNames.Count >= MAX_PLAYERS_PER_GAME)
+            { AlertMessage = $"Cannot add more than {MAX_PLAYERS_PER_GAME} players."; return; }
 
             AlertMessage = string.Empty;
 
