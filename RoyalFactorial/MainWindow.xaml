@@ -94,6 +94,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="Place"
@@ -109,7 +110,13 @@
                                Grid.Column="2"
                                FontWeight="Bold"
                                Padding="5"
-                               TextAlignment="Right"
+                               TextAlignment="Left"
+                               Foreground="{StaticResource TextColor}" />
+                    <TextBlock Text="Del"
+                               Grid.Column="3"
+                               FontWeight="Bold"
+                               Padding="5"
+                               TextAlignment="Left"
                                Foreground="{StaticResource TextColor}" />
                 </Grid>
 

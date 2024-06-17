@@ -36,8 +36,8 @@
 
             <!-- Rank Score -->
             <TextBlock Grid.Column="2"
-                       HorizontalAlignment="Right"
-                       TextAlignment="Right"
+                       HorizontalAlignment="Left"
+                       TextAlignment="Left"
                        Foreground="{StaticResource TextAccentColor}"
                        Padding="3"
                        Style="{StaticResource HiddenIfTiedFirst}">
@@ -50,8 +50,8 @@
 
             <!-- Suite Score -->
             <TextBlock Grid.Column="2"
-                       HorizontalAlignment="Right"
-                       TextAlignment="Right"
+                       HorizontalAlignment="Left"
+                       TextAlignment="Left"
                        Foreground="{StaticResource TextAccentColor}"
                        Padding="3"
                        Style="{StaticResource VisibleIfTiedFirst}">
@@ -106,6 +106,8 @@
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Text="{Binding Name}"
+                           FontSize="16"
+                           VerticalAlignment="Bottom"
                            FontWeight="Bold"
                            Foreground="{StaticResource ForegroundColor}"
                            Margin="10"/>
