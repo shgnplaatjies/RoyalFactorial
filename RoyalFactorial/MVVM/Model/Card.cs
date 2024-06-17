@@ -8,10 +8,9 @@ namespace RoyalFactorial.MVVM.Model
 {
     public record Card(Suit Suit, Rank Rank)
     {
-        public int GetRankScore() => Rank.Score;
+        public int RankScore { get; } = Rank.Score;
 
-        public int GetSuitScore() => Suit.Score;
-
+        public int SuitScore { get; } = Suit.Score;
         public override string ToString() => $"Card<{Rank},{Suit}>";
 
         public static List<Rank> GetRanks() =>
