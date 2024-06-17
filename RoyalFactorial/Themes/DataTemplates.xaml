@@ -11,6 +11,7 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <!-- Position -->
@@ -60,6 +61,21 @@
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
+
+            <!-- Remove Button -->
+            <Button Content="🗑"
+                    Command="{
+                        Binding DataContext.RemoveLeaderboardPlayerCommand,
+                        RelativeSource={RelativeSource AncestorType=Window}
+                        }"
+                    CommandParameter="{Binding}"
+                    Foreground="White"
+                    Background="{StaticResource SecondaryColor}"
+                    Padding="5"
+                    Margin="5,0,0,0"
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ButtonStyle}"/>
 
 
         </Grid>
