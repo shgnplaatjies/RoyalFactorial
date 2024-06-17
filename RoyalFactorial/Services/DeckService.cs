@@ -30,6 +30,9 @@ namespace RoyalFactorial.Services
 
         public List<List<Card>> DealCards(int numberOfPlayers, int numberOfCardsPerPlayer)
         {
+            if (numberOfPlayers < 1)
+                return new(([]));
+
             var numberOfCardsRequired = numberOfPlayers * numberOfCardsPerPlayer;
 
             var players = Enumerable.Range(0, numberOfPlayers);
